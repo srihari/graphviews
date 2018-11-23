@@ -1,0 +1,316 @@
+<!doctype html>
+<html xmlns:th="http://thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8"/>
+    <link rel="icon" type="image/png" href="/assets/img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+    <title th:text=" 'Viewing details for ' + ${customer_name}"></title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
+    <meta name="viewport" content="width=device-width"/>
+
+
+    <!-- Bootstrap core CSS     -->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/assets/css/customer.css" rel="stylesheet"/>
+
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    <link href="/assets/css/pe-icon-7-stroke.css" rel="stylesheet"/>
+
+
+</head>
+
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Popeye Bank</a>
+
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="#">Sign out</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            <span data-feather="home"></span>Dashboard <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="users"></span>
+                            Customers
+                        </a>
+                    </li>
+                </ul>
+
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    <span>Saved reports</span>
+                    <a class="d-flex align-items-center text-muted" href="#">
+                        <span data-feather="plus-circle"></span>
+                    </a>
+                </h6>
+                <ul class="nav flex-column mb-2">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="file-text"></span>
+                            Current month
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="file-text"></span>
+                            Last quarter
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="file-text"></span>
+                            Social engagement
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+
+        <h1 th:text='${customer_name}'/>
+
+        </br>
+
+        <div class="card">
+            <div class="card-header">
+                <h5 class="font-weight-bold">Personal Details</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-auto">
+                        <div class="author">
+                            <a href="#">
+                                <img class="avatar border border-info" src="/assets/img/faces/face-0.jpg" alt="..."/>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-xs-1">
+                        <h6 class="font-weight-bold">Address</h6>
+                        <div class="card-text">
+                            3221, Chalk Butte Rd, Cut Bank
+                            IL 529427, U.S.A
+                        </div>
+                    </div>
+                    <div class="col-sm-auto">
+                        <h6 class="font-weight-bold">Gender</h6>
+                        <div class="card-text" th:text='${gender}'/>
+                    </div>
+                    <div class="col-sm-auto">
+                        <h6 class="font-weight-bold">Date of Birth</h6>
+                        <div class="card-text" th:text='${age}'></div>
+                    </div>
+                    <div class="col-sm-auto">
+                        <h6 class="font-weight-bold">Customer Since</h6>
+                        <div class="card-text" th:text='${customer_since}'></div>
+                    </div>
+                    <div class="col-sm-auto">
+                        <h6 class="font-weight-bold">Segment</h6>
+                        <div class="card-text" th:text='${customer_segment}'></div>
+                    </div>
+                    <div class="col-md-auto">
+                        <h6 class="font-weight-bold">Primary Email</h6>
+                        <div class="card-text" th:text='${primary_email}'></div>
+                    </div>
+                    <div class="col-md-auto">
+                        <h6 class="font-weight-bold">Primary Phone</h6>
+                        <div class="card-text" th:text='${primary_phone}'></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        </br>
+
+        <div class="card">
+            <div class="card-header">
+                <h5 class="font-weight-bold">Summary</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-2">
+                        <h6 class="font-weight-bold">Net Cash Balance</h6>
+                        <div class="card-text">
+                            $1,234,567
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <h6 class="font-weight-bold">Credit Score</h6>
+                        <div class="card-text">570</div>
+                    </div>
+                    <div class="col-lg-2">
+                        <h6 class="font-weight-bold">Credit Card Balance</h6>
+                        <div class="card-text">$12,345</div>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <h6 class="font-weight-bold">Outstanding Loan</h6>
+                        <div class="card-text">$2,00,000</div>
+                    </div>
+                    <div class="col-lg-2">
+                        <h6 class="font-weight-bold">Total Fixed Deposits</h6>
+                        <div class="card-text">$2,00,000</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </br>
+
+        <div class="card">
+            <div class="card-header">
+                <h5 class="font-weight-bold">Recent Transactions</h5>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col"><h6>Date</h6></th>
+                    <th scope="col"><h6>Desc</h6></th>
+                    <th scope="col"><h6>Deposit</h6></th>
+                    <th scope="col"><h6>Withdrawl</h6></th>
+                    <th scope="col"><h6>Balance</h6></th>
+                    <th scope="col"><h6>Account</h6></th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="txn : ${customerTransactions}">
+                    <td th:text='${txn.transactionDate}'/>
+                    <td th:text='${txn.description}'/>
+                    <td th:text='${txn.deposit}'/>
+                    <td th:text='${txn.withdrawl}'/>
+                    <td th:text='${txn.balance}'/>
+                    <td th:text='${txn.account}'/>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+        </br>
+
+        <div class="card">
+            <div class="card-header">
+                <h5 class="font-weight-bold">Recent Interactions</h5>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col"><h6>Date</h6></th>
+                    <th scope="col"><h6>Type</h6></th>
+                    <th scope="col"><h6>Satisfaction Score</h6></th>
+                    <th scope="col"><h6>Details</h6></th>
+                    <th scope="col"><h6>Case Status</h6></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>Otto</td>
+                    <td>Otto</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>Thornton</td>
+                    <td>Thornton</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry the Bird</td>
+                    <td>Larry the Bird</td>
+                    <td>Larry the Bird</td>
+                    <td>Larry the Bird</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        </br>
+
+        <div class="card">
+            <div class="card-header">
+                <h5 class="font-weight-bold">Spend Analyzer</h5>
+            </div>
+            <div class="card-body">
+                <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+            </div>
+        </div>
+
+
+    </main>
+</div>
+
+<!-- Graphs -->
+<script src="/assets/js/Chart.js"></script>
+<script>
+        var ctx = document.getElementById("myChart");
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["F & B", "Health", "Entertainment", "Airline", "Hotels", "Jewellery"],
+                datasets: [{
+                    label: 'Amount in USD',
+                    data: [1200, 1900, 300, 500, 200, 300],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+        });
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
