@@ -3,6 +3,8 @@ package com.example.graphview.controllers;
 import com.example.graphview.graph.RemoteGraph;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.tinkerpop.gremlin.driver.Result;
+import org.apache.tinkerpop.gremlin.process.traversal.Bindings;
+import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource;
 import org.janusgraph.core.JanusGraph;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,13 +35,9 @@ public class HomeController {
         remoteGraph.openGraph(JANUS_CONF_FILE_PATH);
 
         // Executes 1+1 on Gremlin Server
-        CompletableFuture<List<Result>> results = remoteGraph.executeGremlin("1+1");
+        remoteGraph.executeGremlin("1+1");
+        remoteGraph.createElements();
 
-        try {
-            Result shouldBe2 = results.get().get(0);
-            System.out.println(shouldBe2);
-        } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
-        }
     }
+
 }
