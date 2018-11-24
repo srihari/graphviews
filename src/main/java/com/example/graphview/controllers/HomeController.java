@@ -1,9 +1,7 @@
 package com.example.graphview.controllers;
 
+import com.example.graphview.graph.RemoteGraph;
 import org.apache.commons.configuration.ConfigurationException;
-import org.apache.commons.configuration.PropertiesConfiguration;
-import org.apache.tinkerpop.gremlin.driver.Client;
-import org.apache.tinkerpop.gremlin.driver.Cluster;
 import org.apache.tinkerpop.gremlin.driver.Result;
 import org.janusgraph.core.JanusGraph;
 import org.springframework.stereotype.Controller;
@@ -22,10 +20,6 @@ public class HomeController {
     private static final String url = "";
     private JanusGraph airroutes;
 
-    private Cluster cluster;
-    private Client client;
-
-
     @RequestMapping("/airroutes/{airportCode}")
     public ModelAndView viewRoutes(ModelAndView modelAndView, @PathVariable String airportCode) throws ConfigurationException {
         connect();
@@ -35,17 +29,12 @@ public class HomeController {
     }
 
     private void connect() throws ConfigurationException {
-        PropertiesConfiguration conf = new PropertiesConfiguration(JANUS_CONF_FILE_PATH);
-
-        try {
-            cluster = Cluster.open(conf.getString("gremlin.remote.driver.clusterFile"));
-            client = cluster.connect();
-        } catch (Exception e) {
-            throw new ConfigurationException(e);
-        }
+        RemoteGraph remoteGraph = new RemoteGraph();
+        remoteGraph.openGraph(JANUS_CONF_FILE_PATH);
 
         // Executes 1+1 on Gremlin Server
-        CompletableFuture<List<Result>> results = client.submit("1+1").all();
+        CompletableFuture<List<Result>> results = remoteGraph.executeGremlin("1+1");
+
         try {
             Result shouldBe2 = results.get().get(0);
             System.out.println(shouldBe2);
@@ -53,6 +42,4 @@ public class HomeController {
             e.printStackTrace();
         }
     }
-
-
 }
