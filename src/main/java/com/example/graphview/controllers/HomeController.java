@@ -1,5 +1,7 @@
 package com.example.graphview.controllers;
 
+import org.apache.commons.configuration.ConfigurationException;
+import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.tinkerpop.gremlin.driver.Client;
 import org.apache.tinkerpop.gremlin.driver.Cluster;
 import org.apache.tinkerpop.gremlin.driver.Result;
@@ -15,29 +17,39 @@ import java.util.concurrent.ExecutionException;
 
 @Controller
 public class HomeController {
+    private String JANUS_CONF_FILE_PATH = "conf/jgex-remote.properties";
+
     private static final String url = "";
     private JanusGraph airroutes;
 
+    private Cluster cluster;
+    private Client client;
+
 
     @RequestMapping("/airroutes/{airportCode}")
-    public ModelAndView viewRoutes(ModelAndView modelAndView, @PathVariable String airportCode) {
+    public ModelAndView viewRoutes(ModelAndView modelAndView, @PathVariable String airportCode) throws ConfigurationException {
         connect();
         modelAndView.setViewName("airroutes");
 
         return modelAndView;
     }
 
-    private void connect() {
-        Cluster cluster = Cluster.open();   //connects to the localhost when no config is passed
-        Client client = cluster.connect();
+    private void connect() throws ConfigurationException {
+        PropertiesConfiguration conf = new PropertiesConfiguration(JANUS_CONF_FILE_PATH);
 
+        try {
+            cluster = Cluster.open(conf.getString("gremlin.remote.driver.clusterFile"));
+            client = cluster.connect();
+        } catch (Exception e) {
+            throw new ConfigurationException(e);
+        }
+
+        // Executes 1+1 on Gremlin Server
         CompletableFuture<List<Result>> results = client.submit("1+1").all();
         try {
             Result shouldBe2 = results.get().get(0);
             System.out.println(shouldBe2);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
     }
