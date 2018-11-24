@@ -13,7 +13,7 @@ public class HomeController {
 
 
     @RequestMapping("/airroutes/{airportCode}")
-    public ModelAndView viewCustomer(ModelAndView modelAndView, @PathVariable String airportCode) {
+    public ModelAndView viewRoutes(ModelAndView modelAndView, @PathVariable String airportCode) {
         connect();
 
         modelAndView.setViewName("airroutes");
