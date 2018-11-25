@@ -6,16 +6,12 @@ import org.apache.tinkerpop.gremlin.driver.Client;
 import org.apache.tinkerpop.gremlin.driver.Cluster;
 import org.apache.tinkerpop.gremlin.driver.Result;
 import org.apache.tinkerpop.gremlin.process.traversal.Bindings;
-import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversal;
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource;
 import org.apache.tinkerpop.gremlin.structure.Graph;
-import org.apache.tinkerpop.gremlin.structure.Property;
-import org.apache.tinkerpop.gremlin.structure.Vertex;
 import org.apache.tinkerpop.gremlin.structure.util.empty.EmptyGraph;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -27,6 +23,7 @@ public class RemoteGraph {
     private Cluster cluster;
     private Client client;
 
+    private Graph graph;
     private GraphTraversalSource g;
 
     public GraphTraversalSource openGraph(String confFilePath) throws ConfigurationException {
@@ -42,7 +39,7 @@ public class RemoteGraph {
         }
 
         // using the remote graph for queries
-        Graph graph = EmptyGraph.instance();
+        graph = EmptyGraph.instance();
         g = graph.traversal().withRemote(conf);
 
         return g;
@@ -76,5 +73,25 @@ public class RemoteGraph {
                 .property(AGE, b.of(AGE, 10000)).next();
 
         executeGremlin("g.V().values(\"name\")");
+    }
+
+    public void closeGraph() throws Exception {
+        LOGGER.info("Closing graph");
+
+        try {
+            if (g != null) {
+                g.close();
+            }
+            if (cluster != null) {
+                cluster.close();
+            }
+        } finally {
+            g = null;
+            graph = null;
+            client = null;
+            cluster = null;
+
+        }
+
     }
 }
