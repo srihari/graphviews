@@ -28,7 +28,14 @@ public class HomeController {
         remoteGraph.openGraph(JANUS_CONF_FILE_PATH);
 
         // Executes 1+1 on Gremlin Server
-        remoteGraph.executeGremlin("1+1");
+        remoteGraph.executeGremlin("map = new HashMap();" +
+                "map.put(\"storage.backend\", \"cql\");" +
+                "map.put(\"storage.hostname\", \"127.0.0.1\");"+
+                "ConfiguredGraphFactory.createTemplateConfiguration(new MapConfiguration(map));"+
+                "graph = ConfiguredGraphFactory.create(\"airroutes\");"+
+                "graph.io(graphml()).readGraph('PATH/TO/resources/air-routes.graphml');"+
+                "graph.traversal().V().limit(1).values('city');"
+        );
         remoteGraph.createElements();
 
         remoteGraph.closeGraph();
