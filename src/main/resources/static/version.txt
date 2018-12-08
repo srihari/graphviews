@@ -1,0 +1,2 @@
+elysium.pom.version=@pom.version@
+elysium.buildNumber=@buildNumber@
