@@ -5,14 +5,15 @@ import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.tinkerpop.gremlin.driver.Client;
 import org.apache.tinkerpop.gremlin.driver.Cluster;
 import org.apache.tinkerpop.gremlin.driver.Result;
-import org.apache.tinkerpop.gremlin.process.traversal.Bindings;
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource;
 import org.apache.tinkerpop.gremlin.structure.Graph;
 import org.apache.tinkerpop.gremlin.structure.util.empty.EmptyGraph;
+import org.janusgraph.core.ConfiguredGraphFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -41,38 +42,21 @@ public class RemoteGraph {
         // using the remote graph for queries
         graph = EmptyGraph.instance();
         g = graph.traversal().withRemote(conf);
-
         return g;
     }
 
-    public void executeGremlin(String command) {
+    public Result executeGremlinCommand(String command, Map<String, Object> params) {
         LOGGER.info("Executing Gremlin command: " + command);
-        CompletableFuture<List<Result>> results = client.submit(command).all();
+        CompletableFuture<List<Result>> results = client.submit(command, params).all();
 
+        Result rawResult = null;
         try {
-            Result rawResult = results.get().get(0);
-            System.out.println(rawResult);
+            rawResult = results.get().get(0);
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
-    }
-
-    public void createElements() {
-        // Use bindings to allow the Gremlin Server to cache traversals that
-        // will be reused with different parameters. This minimizes the
-        // number of scripts that need to be compiled and cached on the server.
-        // http://tinkerpop.apache.org/docs/3.2.6/reference/#parameterized-scripts
-        final Bindings b = Bindings.instance();
-
-        final String NAME = "name";
-        final String AGE = "age";
-        final String LABEL = "label";
-
-        g.addV(b.of(LABEL, "titan"))
-                .property(NAME, b.of(NAME, "saturn"))
-                .property(AGE, b.of(AGE, 10000)).next();
-
-        executeGremlin("g.V().values(\"name\")");
+        System.out.println(" Returning Result Object >>>>>>> " + rawResult);
+        return rawResult;
     }
 
     public void closeGraph() throws Exception {
