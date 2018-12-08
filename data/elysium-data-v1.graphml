@@ -1,0 +1,121 @@
+<?xml version='1.0' ?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns
+     http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+
+    <!--For all Vertex Nodes-->
+    <key id='labelV' for='node' attr.name='labelV' attr.type='string'/>
+
+    <!--For Event-->
+    <key id='type' for='node' attr.name='type' attr.type='string'/>
+    <key id='desc' for='node' attr.name='type' attr.type='string'/>
+    <key id='event_id' for='node' attr.name='type' attr.type='string'/>
+    <key id='event_name' for='node' attr.name='type' attr.type='string'/>
+    <key id='event_type' for='node' attr.name='type' attr.type='string'/>
+    <key id='event_source' for='node' attr.name='type' attr.type='string'/>
+    <key id='event_version' for='node' attr.name='type' attr.type='string'/>
+    <key id='event_time' for='node' attr.name='type' attr.type='string'/>
+    <key id='timestamp' for='node' attr.name='type' attr.type='string'/>
+    <key id='management_event' for='node' attr.name='type' attr.type='string'/>
+
+    <!--For HTTP Request-->
+    <key id='source_ipaddress' for='node' attr.name='type' attr.type='string'/>
+    <key id='request_parameters' for='node' attr.name='type' attr.type='string'/>
+    <key id='response_elements' for='node' attr.name='type' attr.type='string'/>
+    <key id='request_id' for='node' attr.name='type' attr.type='string'/>
+
+    <!--For AWS Region-->
+    <key id='awsregion' for='node' attr.name='type' attr.type='string'/>
+
+    <!--For User-->
+    <key id='Ui_type' for='node' attr.name='type' attr.type='string'/>
+    <key id='Ui_principal_id' for='node' attr.name='type' attr.type='string'/>
+    <key id='Ui_arn' for='node' attr.name='type' attr.type='string'/>
+    <key id='Ui_account_id' for='node' attr.name='type' attr.type='string'/>
+    <key id='Ui_access_key_id' for='node' attr.name='type' attr.type='string'/>
+    <key id='Ui_invoked_by' for='node' attr.name='type' attr.type='string'/>
+    <key id='Ui_sc_si_type' for='node' attr.name='type' attr.type='string'/>
+    <key id='Ui_sc_si_principal_id' for='node' attr.name='type' attr.type='string'/>
+    <key id='Ui_sc_si_arn' for='node' attr.name='type' attr.type='string'/>
+    <key id='Ui_sc_si_account_id' for='node' attr.name='type' attr.type='string'/>
+    <key id='Ui_sc_si_user_name' for='node' attr.name='type' attr.type='string'/>
+    <key id='Ui_sc_attributes' for='node' attr.name='type' attr.type='string'/>
+    <key id='Ui_sc_attributes_creation_date' for='node' attr.name='type' attr.type='string'/>
+
+    <!--For all Edges-->
+    <key id='labelE' for='edge' attr.name='type' attr.type='string'/>
+
+    <graph id='G' edgedefault='directed'>
+        <node id='0'>
+            <data key='labelV'>version0.1</data>
+            <data key='desc'>Version: 0.1 Generated: 2018-11-28</data>
+        </node>
+
+        <node id='1001'>
+            <data key='labelV'>event</data>
+            <data key='type'>event</data>
+            <data key='event_id'>1</data>
+            <data key='event_name'>CreateLogStream</data>
+            <data key='event_type'>AwsApiCall</data>
+            <data key='event_source'>logs.amazonaws.com</data>
+            <data key='event_version'>1.04</data>
+            <data key='event_time'>01/10/2018 12:00:21 AM</data>
+            <data key='timestamp'>1538352021000</data>
+            <data key='management_event'>NULL</data>
+        </node>
+
+        <node id='1002'>
+            <data key='labelV'>httprequest</data>
+            <data key='type'>httprequest</data>
+            <data key='source_ipaddress'>35.173.231.129</data>
+            <data key='request_parameters'>
+                {"encryptionContext":{"aws:lambda:FunctionArn":"arn:aws:lambda:us-east-1:256387704049:function:astra-aws-dome9-compliance-Scheduler-15SCQSU1BKMPI"}}
+            </data>
+            <data key='response_elements'>NULL</data>
+            <data key='request_id'>655412b0-bbdd-4729-8d1b-bf38e9e3c3f5</data>
+        </node>
+
+        <node id='1003'>
+            <data key='labelV'>awsregion</data>
+            <data key='type'>awsregion</data>
+            <data key='awsregion'>N. Virginia</data>
+        </node>
+
+        <node id='1004'>
+            <data key='labelV'>user</data>
+            <data key='type'>user</data>
+            <data key='Ui_type'>AssumedRole</data>
+            <data key='Ui_principal_id'>AROAIBJB2L3NUY6U7B35G:astra-aws-dome9-compliance-Scheduler-15SCQSU1BKMPI</data>
+            <data key='Ui_arn'>
+                arn:aws:sts::256387704049:assumed-role/astra-aws-dome9-compliance-SchedulerRole-AX6J80MMTWG3/astra-aws-dome9-compliance-Scheduler-15SCQSU1BKMPI
+            </data>
+            <data key='Ui_account_id'>256387704049</data>
+            <data key='Ui_access_key_id'>ASIATXMPF4TYYFZMLV73</data>
+            <data key='Ui_invoked_by'>AWS Internal</data>
+            <data key='Ui_sc_si_type'>Role</data>
+            <data key='Ui_sc_si_principal_id'>AROAJEEVTZ6R6XMPKKCYO</data>
+            <data key='Ui_sc_si_arn'>
+                arn:aws:iam::256387704049:role/astra-aws-es-optimizer-AstraAWSESOptimizerRole-C6315NNONQ5N
+            </data>
+            <data key='Ui_sc_si_account_id'>256387704049</data>
+            <data key='Ui_sc_si_user_name'>astra-aws-es-optimizer-AstraAWSESOptimizerRole-C6315NNONQ5N</data>
+            <data key='Ui_sc_attributes'>{"mfaAuthenticated":"false","creationDate":"2018-09-30T23:41:15Z"}</data>
+            <data key='Ui_sc_attributes_creation_date'>2018-09-30T23:41:15Z</data>
+        </node>
+
+        <edge id='3619' source='1001' target='1003'>
+            <data key='labelE'>occurred_in</data>
+        </edge>
+        <edge id='3620' source='1001' target='1002'>
+            <data key='labelE'>originated_from</data>
+        </edge>
+        <edge id='3621' source='1002' target='1004'>
+            <data key='labelE'>requested_by</data>
+        </edge>
+        <edge id='3622' source='1001' target='1004'>
+            <data key='labelE'>created_by</data>
+        </edge>
+
+    </graph>
+</graphml>
