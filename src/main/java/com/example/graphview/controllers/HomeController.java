@@ -22,8 +22,6 @@ public class HomeController {
         return modelAndView;
     }
 
-
-
     private void executeQuery(String airportCode) throws Exception {
         remoteGraph.openGraph(JANUS_CONF_FILE_PATH);
         Result result = remoteGraph.executeGremlinCommand(traversalScript(airportCode), new HashMap<>());
