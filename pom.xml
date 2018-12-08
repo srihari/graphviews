@@ -49,6 +49,16 @@
             <version>0.2.2</version>
         </dependency>
         <dependency>
+            <groupId>org.janusgraph</groupId>
+            <artifactId>janusgraph-cql</artifactId>
+            <version>0.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tinkerpop</groupId>
+            <artifactId>gremlin-server</artifactId>
+            <version>3.2.10</version>
+        </dependency>
+        <dependency>
             <groupId>org.apache.tinkerpop</groupId>
             <artifactId>gremlin-driver</artifactId>
             <version>3.2.10</version>
@@ -58,7 +68,6 @@
             <artifactId>junit5-engine</artifactId>
             <version>5.0.0-ALPHA</version>
         </dependency>
-
     </dependencies>
 
 
