@@ -5,9 +5,7 @@ import com.example.graphview.models.graph.GraphQueryRequest;
 import com.example.graphview.models.graph.GraphQueryResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class GraphController {
@@ -34,5 +32,84 @@ public class GraphController {
                 "]");
         return new ResponseEntity<>(response.getResponseString(), HttpStatus.OK);
     }
+
+    @GetMapping(value = "/elysium/v1/users/{user_id}/ip_addresses", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<String> listIpAddressesForUser(@PathVariable String user_id) {
+        String response = "{  \n" +
+                "   \"ip_addresses\":[  \n" +
+                "      {  \n" +
+                "         \"user_id\": \"%s\",\n" +
+                "         \"ip_address\":\"1.2.3.4\"\n" +
+                "      },\n" +
+                "      {  \n" +
+                "         \"user_id\": \"%s\" ,\n" +
+                "         \"ip_address\":\"10.20.30.40\"\n" +
+                "      },\n" +
+                "      {  \n" +
+                "         \"user_id\": \"%s\",\n" +
+                "         \"ip_address\":\"10.20.30.40\"\n" +
+                "      },\n" +
+                "      {  \n" +
+                "         \"user_id\": \"%s\" ,\n" +
+                "         \"ip_address\":\"10.20.30.40\"\n" +
+                "      },\n" +
+                "      {  \n" +
+                "         \"user_id\": \"%s\" ,\n" +
+                "         \"ip_address\":\"10.20.30.40\"\n" +
+                "      },\n" +
+                "      {  \n" +
+                "         \"user_id\": \"%s\" ,\n" +
+                "         \"ip_address\":\"10.20.30.40\"\n" +
+                "      },\n" +
+                "      {  \n" +
+                "         \"user_id\": \"%s\" ,\n" +
+                "         \"ip_address\":\"10.20.30.40\"\n" +
+                "      },\n" +
+                "      {  \n" +
+                "         \"user_id\": \"%s\" ,\n" +
+                "         \"ip_address\":\"10.20.30.40\"\n" +
+                "      },\n" +
+                "      {  \n" +
+                "         \"user_id\": \"%s\" ,\n" +
+                "         \"ip_address\":\"10.20.30.40\"\n" +
+                "      },\n" +
+                "      {  \n" +
+                "         \"user_id\": \"%s\" ,\n" +
+                "         \"ip_address\":\"10.20.30.40\"\n" +
+                "      },\n" +
+                "      {  \n" +
+                "         \"user_id\": \"%s\" ,\n" +
+                "         \"ip_address\":\"10.20.30.40\"\n" +
+                "      },\n" +
+                "      {  \n" +
+                "         \"user_id\": \"%s\" ,\n" +
+                "         \"ip_address\":\"10.20.30.40\"\n" +
+                "      },\n" +
+                "      {  \n" +
+                "         \"user_id\": \"%s\" ,\n" +
+                "         \"ip_address\":\"10.20.30.40\"\n" +
+                "      },\n" +
+                "      {  \n" +
+                "         \"user_id\": \"%s\" ,\n" +
+                "         \"ip_address\":\"10.20.30.40\"\n" +
+                "      },\n" +
+                "      {  \n" +
+                "         \"user_id\": \"%s\" ,\n" +
+                "         \"ip_address\":\"10.20.30.40\"\n" +
+                "      },\n" +
+                "      {  \n" +
+                "         \"user_id\": \"%s\" ,\n" +
+                "         \"ip_address\":\"10.20.30.40\"\n" +
+                "      },\n" +
+                "      {  \n" +
+                "         \"user_id\": \"%s\" ,\n" +
+                "         \"ip_address\":\"10.20.30.40\"\n" +
+                "      }\n" +
+                "   ]\n" +
+                "}";
+        String finalResponse = String.format(response, user_id, user_id, user_id, user_id, user_id, user_id, user_id, user_id, user_id, user_id, user_id, user_id, user_id, user_id, user_id, user_id, user_id);
+        return new ResponseEntity<>(finalResponse, HttpStatus.OK);
+    }
+
 
 }
